@@ -18,9 +18,9 @@ const primaryLinks: { name: string; href: string }[] = [
  */
 export default function Footer() {
     return (
-        <footer className="justify-between max-w-6xl px-6 pt-12 pb-6 mx-auto mt-10 text-black dark:text-white">
-            <div className="container mx-auto">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-20">
+        <footer className="justify-between max-w-5xl px-6 pt-12 pb-6 mx-auto mt-10 text-black bg-white dark:text-white dark:bg-stone-900">
+            <div className="mx-auto">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-20">
                     <div className="w-full m-1">
                         <div className="flex items-center mb-2">
                             <Image
@@ -28,13 +28,15 @@ export default function Footer() {
                                 alt="Vendron logo"
                                 width={64}
                                 height={64}
-                                className="mr-2"
+                                className="mr-4"
                             />
-                            <h5 className="text-xl font-bold">VENDRON.</h5>
+                            <div>
+                                <h5 className="text-xl font-bold">VENDRON.</h5>
+                                <p className="text-sm text-stone-400">
+                                    Portfolio of projects and products by Vendron.
+                                </p>
+                            </div>
                         </div>
-                        <p className="text-sm text-stone-400">
-                            Portfolio of projects and products by Vendron.
-                        </p>
                     </div>
 
                     <div className="w-full m-1">
@@ -53,7 +55,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    <div className="w-full">
+                    <div className="w-full m-1">
                         <h5 className="mb-2 text-xl font-bold">CONTACT</h5>
                         <ul className="text-sm text-stone-400">
                             <li>

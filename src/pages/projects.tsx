@@ -144,7 +144,7 @@ const ProjectsSection: React.FC = () => {
 
     return (
         <section className="relative bg-stone-100 dark:bg-stone-950">
-            <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <h2 className="mb-12 text-3xl font-bold text-center text-stone-950 dark:text-white">
                     Projects
                 </h2>

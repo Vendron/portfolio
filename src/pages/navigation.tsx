@@ -38,7 +38,7 @@ const Navigation: React.FC = () => {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`${theme === "light" ? "text-stone-600 hover:bg-stone-100 hover:text-stone-950" : "text-stone-300 hover:bg-stone-700 hover:text-white"} px-3 py-2 rounded-md text-sm font-medium`}
+                                    className={`${theme === "light" ? "text-stone-600 hover:text-stone-950" : "text-stone-300 hover:text-white"} px-3 py-2 rounded-md text-sm font-medium hover:font-bold`}
                                 >
                                     {item.name}
                                 </Link>
@@ -46,7 +46,7 @@ const Navigation: React.FC = () => {
                         </div>
                         <button
                             onClick={toggleTheme}
-                            className={`${theme === "light" ? "bg-stone-200 text-stone-800" : "bg-stone-700 text-white"} px-3 py-2 rounded-md flex items-center text-sm`}
+                            className={`${theme === "light" ? "text-stone-800 hover:text-stone-700" : "text-white"} px-3 py-2 rounded-md flex items-center text-sm`}
                         >
                             <div className="mr-2">
                                 {theme === "light" ? (
@@ -61,7 +61,7 @@ const Navigation: React.FC = () => {
                     <div className="flex items-center md:hidden">
                         <button
                             onClick={toggleTheme}
-                            className={`${theme === "light" ? "bg-stone-200 text-stone-800" : "bg-stone-700 text-white"} p-2 rounded-md mr-2`}
+                            className={`${theme === "light" ? "text-stone-800" : "text-white"} p-2 rounded-md mr-2`}
                             aria-label="Toggle theme"
                         >
                             {theme === "light" ? (

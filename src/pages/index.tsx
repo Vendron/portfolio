@@ -12,9 +12,10 @@ const Home: React.FC = () => (
             <About />
             <ProjectsSection />
             <SkillsSection />
-            <Footer />
         </main>
-        <footer>{/* Add your footer content */}</footer>
+        <footer>
+            <Footer />
+        </footer>
     </div>
 );
 
