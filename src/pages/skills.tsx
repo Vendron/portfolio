@@ -27,16 +27,16 @@ const skills: Skill[] = [
 ];
 
 const SkillTile: React.FC<Skill> = ({ name, level }) => (
-    <div className="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-700">
+    <div className="overflow-hidden bg-white rounded-lg shadow-md dark:bg-stone-700">
         <div className="flex items-center p-4 space-x-4">
-            <h3 className="text-lg font-semibold text-center text-gray-900 dark:text-white">{name}</h3>
-            <p className="text-gray-600 dark:text-gray-200">{level}</p>
+            <h3 className="text-lg font-semibold text-center text-stone-950 dark:text-white">{name}</h3>
+            <p className="text-stone-600 dark:text-stone-200">{level}</p>
         </div>
     </div>
 );
 
 const SkillsSection: React.FC = () => (
-    <section className="py-16 bg-gray-100 dark:bg-gray-900">
+    <section className="py-16 bg-stone-100 dark:bg-stone-950">
         <div className="container px-4 mx-auto">
             <h2 className="mb-12 text-3xl font-bold text-center text-black dark:text-white">Skills</h2>
             <div className="grid justify-center grid-cols-1 gap-4 mx-auto md:grid-cols-5">

@@ -18,28 +18,28 @@ const primaryLinks: { name: string; href: string }[] = [
  */
 export default function Footer() {
     return (
-        <footer className="justify-between max-w-6xl px-6 pt-12 pb-6 mx-auto mt-10 text-white">
+        <footer className="justify-between max-w-6xl px-6 pt-12 pb-6 mx-auto mt-10 text-black dark:text-white">
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-20">
                     <div className="w-full m-1">
                         <div className="flex items-center mb-2">
                             <Image
-                                src="/images/vendron150x150"
+                                src="/images/profile_smile.png"
                                 alt="Vendron logo"
-                                width={16}
-                                height={16}
+                                width={64}
+                                height={64}
                                 className="mr-2"
                             />
                             <h5 className="text-xl font-bold">VENDRON.</h5>
                         </div>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-stone-400">
                             Portfolio of projects and products by Vendron.
                         </p>
                     </div>
 
                     <div className="w-full m-1">
                         <h5 className="mb-2 text-xl font-bold">QUICK LINKS</h5>
-                        <ul className="text-sm text-gray-400">
+                        <ul className="text-sm text-stone-400">
                             {primaryLinks.map((item) => (
                                 <li key={item.name}>
                                     <Link
@@ -55,7 +55,7 @@ export default function Footer() {
 
                     <div className="w-full">
                         <h5 className="mb-2 text-xl font-bold">CONTACT</h5>
-                        <ul className="text-sm text-gray-400">
+                        <ul className="text-sm text-stone-400">
                             <li>
                                 <Link
                                     className="hover:text-white hover:font-bold"
@@ -76,7 +76,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between mt-10 text-sm text-gray-400">
+                <div className="flex items-center justify-between mt-10 text-sm text-stone-400">
                     <span>Copyright © 2024 Vendron. All rights reserved</span>
                     <Link
                         href="/terms"

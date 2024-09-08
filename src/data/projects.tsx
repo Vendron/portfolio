@@ -1,4 +1,20 @@
-export const projects = [
+export type Project = {
+    id: number;
+    title: string;
+    metric: string;
+    imageUrl: string;
+    altText: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+    githubUrl: string | null;
+    websiteUrl: string | null;
+    tags: Array<{ [key: string]: string }>;
+    relatedProjects: Array<number>;
+};
+
+
+export const projects: Project[] = [
     {
         id: 1,
         title: "Scikit-Longitudinal Package",

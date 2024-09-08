@@ -100,7 +100,7 @@ const ProjectTile: React.FC<{
 }> = ({ project, isInteractable }) => (
     <Link href={isInteractable ? `/projects/${project.id}` : "#"} passHref>
         <div
-            className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-gray-700 ${
+            className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-700 ${
                 isInteractable ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer" : "opacity-60"
             }`}
             style={!isInteractable ? { pointerEvents: "none" } : {}}
@@ -127,10 +127,10 @@ const ProjectTile: React.FC<{
                 )}
             </div>
             <div className="p-4">
-                <h3 className={`text-lg font-semibold ${isInteractable ? "text-gray-800 dark:text-white hover:text-opacity-75" : "text-gray-400 dark:text-gray-500"}`}>
+                <h3 className={`text-lg font-semibold ${isInteractable ? "text-stone-800 dark:text-white hover:text-opacity-75" : "text-stone-400 dark:text-stone-500"}`}>
                     {project.title}
                 </h3>
-                <p className={`text-gray-600 dark:text-gray-300 ${!isInteractable ? "text-opacity-50" : ""}`}>{project.metric}</p>
+                <p className={`text-stone-600 dark:text-stone-300 ${!isInteractable ? "text-opacity-50" : ""}`}>{project.metric}</p>
             </div>
         </div>
     </Link>
@@ -143,9 +143,9 @@ const ProjectsSection: React.FC = () => {
     const visibleProjects = showAll ? projects : projects.slice(0, 6);
 
     return (
-        <section className="relative bg-gray-100 dark:bg-gray-900">
-            <div className="container px-4 mx-auto">
-                <h2 className="mb-12 text-3xl font-bold text-center text-gray-900 dark:text-white">
+        <section className="relative bg-stone-100 dark:bg-stone-950">
+            <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+                <h2 className="mb-12 text-3xl font-bold text-center text-stone-950 dark:text-white">
                     Projects
                 </h2>
 
@@ -161,14 +161,14 @@ const ProjectsSection: React.FC = () => {
                     </div>
 
                     {!showAll && (
-                        <div className="absolute bottom-0 left-0 w-full pointer-events-none h-80 bg-gradient-to-t from-gray-100 dark:from-gray-900 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 w-full pointer-events-none h-80 bg-gradient-to-t from-stone-100 dark:from-stone-950 to-transparent"></div>
                     )}
                 </div>
 
                 <div className="flex justify-center mt-8">
                     <button
                         onClick={() => setShowAll(!showAll)}
-                        className="px-4 py-2 text-lg font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                        className="px-4 py-2 text-lg font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
                         {showAll ? "Hide More" : "Show More"}
                     </button>
