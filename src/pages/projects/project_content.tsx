@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Key } from "react";
-
+import { IconType } from "react-icons";
+import { FaSquareGithub} from "react-icons/fa6";
 interface Project {
     id: string;
     title: string;
@@ -13,7 +14,7 @@ interface Project {
     description?: string;
     githubUrl?: string;
     websiteUrl?: string;
-    tags?: { [key: string]: string }[];
+    tags?: Array<{ name: string; color: string; icon: IconType }>; // Updated to match projects.tsx
 }
 
 interface ProjectProps {
@@ -25,12 +26,14 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
     project,
     relatedProjects,
 }) => {
+    const visibleTags = project.tags?.slice(0, 3) || []; // Only show the first 3 tags
+
     return (
         <div className="container px-4 py-12 mx-auto">
             {project.imageUrl && (
                 <Image
                     src={project.imageUrl}
-                    alt={project.altText}
+                    alt={project.altText ?? ""}
                     width={800}
                     height={400}
                     className="object-cover w-full rounded-lg h-96"
@@ -49,12 +52,14 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                     <p className="text-lg">{project.description}</p>
                     {project.githubUrl && (
                         <p className="mt-4">
+                            
                             <a
                                 href={project.githubUrl}
                                 target="_blank"
                                 className="text-blue-500 underline"
                             >
-                                View on GitHub
+                                <FaSquareGithub className="w-4 h-4" /> {/* Icon rendering */}
+                                GitHub
                             </a>
                         </p>
                     )}
@@ -69,25 +74,17 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                             </a>
                         </p>
                     )}
-                    {project.tags && (
+                    {visibleTags.length > 0 && (
                         <div className="flex flex-wrap mt-4 space-x-2">
-                            {project.tags.map(
-                                (
-                                    tag:
-                                        | { [s: string]: unknown }
-                                        | ArrayLike<unknown>,
-                                    index: Key
-                                ) => (
-                                    <span
-                                        key={index}
-                                        className={`px-2 py-1 text-xs font-semibold text-white rounded-full ${
-                                            Object.values(tag)[0]
-                                        }`}
-                                    >
-                                        {Object.keys(tag)[0]}
-                                    </span>
-                                )
-                            )}
+                            {visibleTags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className={`flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-white rounded-full ${tag.color}`}
+                                >
+                                    <tag.icon className="w-4 h-4" /> {/* Icon rendering */}
+                                    <span>{tag.name}</span>
+                                </span>
+                            ))}
                         </div>
                     )}
                 </div>
@@ -104,7 +101,7 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                                 {relatedProject.imageUrl ? (
                                     <Image
                                         src={relatedProject.imageUrl}
-                                        alt={relatedProject.altText}
+                                        alt={relatedProject.altText ?? ""}
                                         width={400}
                                         height={300}
                                         className="object-cover w-full h-48"

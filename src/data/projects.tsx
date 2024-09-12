@@ -1,3 +1,7 @@
+import { SiPython, SiTypescript, SiScikitlearn, SiTensorflow, SiDiscord, SiNestjs, SiAngular, SiAmazon } from 'react-icons/si';
+import { FaNetworkWired } from 'react-icons/fa';
+import { IoAnalytics } from 'react-icons/io5';
+
 export type Project = {
     id: number;
     title: string;
@@ -9,10 +13,9 @@ export type Project = {
     endDate: string;
     githubUrl: string | null;
     websiteUrl: string | null;
-    tags: Array<{ [key: string]: string }>;
+    tags: Array<{ name: string; color: string; icon: React.ComponentType }>;
     relatedProjects: Array<number>;
 };
-
 
 export const projects: Project[] = [
     {
@@ -26,7 +29,11 @@ export const projects: Project[] = [
         endDate: "2023-03-15",
         githubUrl: "https://github.com/username/scikit-longitudinal",
         websiteUrl: "https://simonprovost.github.io/scikit-longitudinal/",
-        tags: [{ Python: "bg-yellow-500" }, { "Machine Learning": "bg-blue-500" }, { "Data Analysis": "bg-green-600" }],
+        tags: [
+            { name: "Python", color: "bg-yellow-500", icon: SiPython },
+            { name: "Machine Learning", color: "bg-blue-500", icon: SiScikitlearn },
+            { name: "TensorFlow", color: "bg-green-600", icon: SiTensorflow },
+        ],
         relatedProjects: [2, 3],
     },
     {
@@ -40,7 +47,16 @@ export const projects: Project[] = [
         endDate: "2021-09-30",
         githubUrl: "https://github.com/username/helio-bot",
         websiteUrl: "https://helio.gg",
-        tags: [{ Game: "bg-yellow-500" }, { "Machine Learning": "bg-blue-500" }, { TypeScript: "bg-blue-600" }],
+        tags: [
+            { name: "NestJS", color: "bg-blue-500", icon: SiNestjs },
+            { name: "Angular", color: "bg-red-500", icon: SiAngular },
+            { name: "Websockets", color: "bg-yellow-500", icon: FaNetworkWired },
+            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
+            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
+            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
+            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
+            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
+        ],
         relatedProjects: [1, 4],
     },
     {
@@ -54,7 +70,10 @@ export const projects: Project[] = [
         endDate: "2021-12-01",
         githubUrl: null, // No GitHub for this project
         websiteUrl: "https://depressionsantidote.com",
-        tags: [{ Community: "bg-yellow-500" }, { "Machine Learning": "bg-blue-500" }],
+        tags: [
+            { name: "Discord", color: "bg-purple-500", icon: SiDiscord },
+            { name: "Analytics", color: "bg-blue-500", icon: IoAnalytics  },
+        ],
         relatedProjects: [2, 4],
     },
     {
@@ -68,8 +87,28 @@ export const projects: Project[] = [
         endDate: "2022-06-10",
         githubUrl: "https://github.com/username/dionysus-bot",
         websiteUrl: "https://dionysus.gg",
-        tags: [{ JavaScript: "bg-yellow-500" }, { Discord: "bg-blue-500" }, { AI: "bg-green-600" }],
+        tags: [
+            { name: "Python", color: "bg-yellow-500", icon: SiPython },
+            // { name: "Data Visualization", color: "bg-blue-500", icon: SiMatplotlib },
+            { name: "Discord", color: "bg-purple-500", icon: SiDiscord },
+        ],
         relatedProjects: [2, 3],
     },
-    // Add more projects as needed...
+    {
+        id: 4,
+        title: "Electric Eel",
+        metric: "Retail E-Commerce Platform",
+        imageUrl: "/images/Dionysushead.png",
+        altText: "Climate prediction model visualization",
+        description: "Founded a retail e-commerce business focused on selling cables, and accessories on Amazon. Managed the end-to-end process from product sourcing to customer service.", 
+        startDate: "2014-04-20",
+        endDate: "present",
+        githubUrl: "https://github.com/username/dionysus-bot",
+        websiteUrl: "https://dionysus.gg",
+        tags: [
+            {name: "Amazon", color: "bg-neural-500", icon: SiAmazon},
+            {name: "E-Commerce", color: "bg-blue-500", icon: IoAnalytics},
+        ],
+        relatedProjects: [2, 3],
+    },
 ];

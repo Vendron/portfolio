@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { projects } from "../data/projects";
+import { IconType } from "react-icons";
 
 interface Project {
     id: number;
@@ -8,133 +10,61 @@ interface Project {
     metric: string;
     imageUrl: string;
     altText: string;
-    url?: string;
-    tags?: { [key: string]: string }[];
-}
-
-const projects: Project[] = [
-    {
-        id: 1,
-        title: "Scikit-Longitudinal Package",
-        metric: "Longitudinal Data Analysis",
-        imageUrl: "/images/Scikit-long-banner.png",
-        altText: "NLP word cloud",
-        url: "https://simonprovost.github.io/scikit-longitudinal/",
-        tags: [
-            { Python: "bg-yellow-500" },
-            { "Machine Laerning": "bg-blue-500" },
-        ],
-    },
-    {
-        id: 2,
-        title: "Helio Discord App",
-        metric: "500,000 users+",
-        imageUrl: "/images/helio_game.png",
-        altText: "NLP word cloud",
-        url: "https://helio.gg",
-        tags: [
-            { Game: "bg-yellow-500" },
-            { "Machine Learning": "bg-blue-500" },
-            { TypeScript: "bg-blue-600" },
-        ],
-    },
-    {
-        id: 3,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-        url: "https://depressionsantidote.com",
-        tags: [
-            { Community: "bg-yellow-500" },
-            { "Machine Laerning": "bg-blue-500" },
-        ],
-    },
-    {
-        id: 4,
-        title: "Dionysus Discord App",
-        metric: "100,000 users+",
-        imageUrl: "/images/Dionysushead.png",
-        altText: "Climate prediction model visualization",
-    },
-    {
-        id: 5,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-    },
-    {
-        id: 6,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-    },
-    {
-        id: 7,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-    },
-    {
-        id: 8,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-    },
-    {
-        id: 9,
-        title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
-        imageUrl: "/images/DABanner.png",
-        altText: "NLP word cloud",
-    },
-];
+    description: string;
+    startDate: string;
+    endDate: string;
+    githubUrl: string | null;
+    websiteUrl: string | null;
+    tags: Array<{ name: string; color: string; icon: IconType }>; // Use IconType for icons
+    relatedProjects: Array<number>;
+};
 
 const ProjectTile: React.FC<{
     project: Project;
     isInteractable: boolean;
-}> = ({ project, isInteractable }) => (
-    <Link href={isInteractable ? `/projects/${project.id}` : "#"} passHref>
-        <div
-            className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-700 ${
-                isInteractable ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer" : "opacity-60"
-            }`}
-            style={!isInteractable ? { pointerEvents: "none" } : {}}
-        >
-            <div className="relative">
-                <Image
-                    src={project.imageUrl}
-                    alt={project.altText}
-                    width={400}
-                    height={300}
-                    className="object-cover w-full h-48"
-                />
-                {project.tags && (
-                    <div className="absolute flex flex-wrap space-x-2 bottom-4 left-4">
-                        {project.tags.map((tag, index) => (
-                            <span
-                                key={index}
-                                className={`px-2 py-1 text-xs font-semibold text-white rounded-full ${Object.values(tag)[0]}`}
-                            >
-                                {Object.keys(tag)[0]}
-                            </span>
-                        ))}
-                    </div>
-                )}
+}> = ({ project, isInteractable }) => {
+    const visibleTags = project.tags.slice(0, 3); // Only show the first 3 tags
+
+    return (
+        <Link href={isInteractable ? `/projects/${project.id}` : "#"} passHref>
+            <div
+                className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-700 ${
+                    isInteractable ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer" : "opacity-60"
+                }`}
+                style={!isInteractable ? { pointerEvents: "none" } : {}}
+            >
+                <div className="relative">
+                    <Image
+                        src={project.imageUrl}
+                        alt={project.altText}
+                        width={400}
+                        height={300}
+                        className="object-cover w-full h-48"
+                    />
+                    {visibleTags.length > 0 && (
+                        <div className="absolute flex flex-wrap space-x-2 bottom-4 left-4">
+                            {visibleTags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className={`flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-white rounded-full ${tag.color}`}
+                                >
+                                    <tag.icon className="w-4 h-4" /> {/* Icon rendering */}
+                                    <span>{tag.name}</span>
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <div className="p-4">
+                    <h3 className={`text-lg font-semibold ${isInteractable ? "text-stone-800 dark:text-white hover:text-opacity-75" : "text-stone-400 dark:text-stone-500"}`}>
+                        {project.title}
+                    </h3>
+                    <p className={`text-stone-600 dark:text-stone-300 ${!isInteractable ? "text-opacity-50" : ""}`}>{project.metric}</p>
+                </div>
             </div>
-            <div className="p-4">
-                <h3 className={`text-lg font-semibold ${isInteractable ? "text-stone-800 dark:text-white hover:text-opacity-75" : "text-stone-400 dark:text-stone-500"}`}>
-                    {project.title}
-                </h3>
-                <p className={`text-stone-600 dark:text-stone-300 ${!isInteractable ? "text-opacity-50" : ""}`}>{project.metric}</p>
-            </div>
-        </div>
-    </Link>
-);
+        </Link>
+    );
+};
 
 const ProjectsSection: React.FC = () => {
     const [showAll, setShowAll] = useState(false);
