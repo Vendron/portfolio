@@ -69,9 +69,9 @@ export default function Footer() {
                             <li>
                                 <Link
                                     className="hover:text-white hover:font-bold"
-                                    href="/support"
+                                    href="/discord"
                                 >
-                                    Support Server
+                                    @vendron
                                 </Link>
                             </li>
                         </ul>

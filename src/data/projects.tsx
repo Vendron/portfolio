@@ -1,6 +1,7 @@
 import { SiPython, SiTypescript, SiScikitlearn, SiTensorflow, SiDiscord, SiNestjs, SiAngular, SiAmazon } from 'react-icons/si';
 import { FaNetworkWired } from 'react-icons/fa';
 import { IoAnalytics } from 'react-icons/io5';
+import { IconType } from "react-icons";
 
 export type Project = {
     id: number;
@@ -13,7 +14,7 @@ export type Project = {
     endDate: string;
     githubUrl: string | null;
     websiteUrl: string | null;
-    tags: Array<{ name: string; color: string; icon: React.ComponentType }>;
+    tags: Array<{ name: string; color: string; icon: IconType }>;
     relatedProjects: Array<number>;
 };
 
@@ -24,9 +25,9 @@ export const projects: Project[] = [
         metric: "Longitudinal Data Analysis",
         imageUrl: "/images/Scikit-long-banner.png",
         altText: "NLP word cloud",
-        description: "An open-source Python package designed for longitudinal data analysis in machine learning, specifically focused on health data. Features include pre-built models for age prediction and customizable data processing pipelines.",
+        description: "An open-source Python package designed for longitudinal data analysis in machine learning, specifically focused on health data. Features include pre-built models for age prediction and customizable data processing pipelines.\n\nI added functions for Deep Learning models to handle the longitudinal data, keeping the temporal vector for RNNs and CNNs with their inputs having the same shape. I also added a function to handle the data in a way that the user can choose the time window for the data to be processed, and the function will return the data in the format that the user wants.",
         startDate: "2024-09-07",
-        endDate: "2023-03-15",
+        endDate: "Present",
         githubUrl: "https://github.com/username/scikit-longitudinal",
         websiteUrl: "https://simonprovost.github.io/scikit-longitudinal/",
         tags: [
@@ -43,18 +44,14 @@ export const projects: Project[] = [
         imageUrl: "/images/helio_game.png",
         altText: "NLP word cloud",
         description: "Helio is a game-focused Discord bot designed to integrate with popular game APIs and provide real-time multiplayer matchmaking. Built with TypeScript and leveraging Machine Learning for player ranking predictions.",
-        startDate: "2020-05-01",
-        endDate: "2021-09-30",
-        githubUrl: "https://github.com/username/helio-bot",
+        startDate: "2022-08-23",
+        endDate: "Present",
+        githubUrl: "https://github.com/heliogame",
         websiteUrl: "https://helio.gg",
         tags: [
             { name: "NestJS", color: "bg-blue-500", icon: SiNestjs },
             { name: "Angular", color: "bg-red-500", icon: SiAngular },
             { name: "Websockets", color: "bg-yellow-500", icon: FaNetworkWired },
-            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
-            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
-            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
-            { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
             { name: "TypeScript", color: "bg-blue-500", icon: SiTypescript },
         ],
         relatedProjects: [1, 4],
@@ -98,7 +95,7 @@ export const projects: Project[] = [
         id: 4,
         title: "Electric Eel",
         metric: "Retail E-Commerce Platform",
-        imageUrl: "/images/Dionysushead.png",
+        imageUrl: "/images/electric-eel.jpg",
         altText: "Climate prediction model visualization",
         description: "Founded a retail e-commerce business focused on selling cables, and accessories on Amazon. Managed the end-to-end process from product sourcing to customer service.", 
         startDate: "2014-04-20",
