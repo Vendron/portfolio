@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
+import { IoEarth } from "react-icons/io5";
+
 
 const navItems = [
     { name: "About Me", href: "/about" },
@@ -50,12 +52,11 @@ const Navigation: React.FC = () => {
                         >
                             <div className="mr-2">
                                 {theme === "light" ? (
-                                    <Moon size={16} />
+                                    <Moon size={20} />
                                 ) : (
-                                    <Sun size={16} />
+                                    <Sun size={20} />
                                 )}
                             </div>
-                            <div>{theme === "light" ? "Dark" : "Light"}</div>
                         </button>
                     </div>
                     <div className="flex items-center md:hidden">
