@@ -3,6 +3,7 @@ import Footer from "./footer";
 import About from "./about";
 import Navigation from "./navigation";
 import SkillsSection from "./skills";
+import Contact from "./contact";
 
 const Home: React.FC = () => (
     <div>
@@ -12,6 +13,7 @@ const Home: React.FC = () => (
             <About />
             <ProjectsSection />
             <SkillsSection />
+            <Contact />
         </main>
         <footer>
             <Footer />

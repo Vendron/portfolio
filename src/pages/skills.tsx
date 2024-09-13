@@ -49,7 +49,7 @@ const SkillTile: React.FC<Skill> = ({ name, level, icon }) => (
 );
 
 const SkillsSection: React.FC = () => (
-    <section className="py-16 bg-gradient-to-b from-stone-100 to-stone-300 dark:from-stone-950 dark:to-stone-900">
+    <section className="py-16 bg-stone-100 dark:bg-stone-950">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <h2 className="mb-12 text-4xl font-bold text-center text-stone-900 dark:text-white">
                 My Technical Skills
