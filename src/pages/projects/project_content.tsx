@@ -5,6 +5,10 @@ import { IconType } from "react-icons";
 import { FaSquareGithub } from "react-icons/fa6";
 import { MdTransitEnterexit } from "react-icons/md";
 import { Project } from "../../data/projects";
+import { RiArrowRightUpLine } from "react-icons/ri";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm"; // Support GitHub Markdown
+import rehypeRaw from "rehype-raw"; // Support raw HTML Markdown
 
 interface ProjectProps {
     project: Project;
@@ -19,7 +23,7 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
 
     return (
         <div className="bg-stone-100 dark:bg-stone-950">
-            <div className="container px-4 py-12 mx-auto ">
+            <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {project.imageUrl && (
                     <Image
                         src={project.imageUrl}
@@ -35,12 +39,45 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                 )}
                 <div>
                     <h1 className="mt-6 text-4xl font-bold">{project.title}</h1>
+                    {visibleTags.length > 0 && (
+                        <div className="flex flex-wrap mt-4 space-x-2">
+                            {visibleTags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className={`flex items-center space-x-1 px-2 py-1 text-base font-semibold text-white rounded-full ${tag.color}`}
+                                >
+                                    <tag.icon className="w-4 h-4" />{" "}
+                                    {/* Icon rendering */}
+                                    <span>{tag.name}</span>
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                    <div className="flex items-center mt-4 space-x-4 text-base text-stone-600 dark:text-stone-400">
+                        <p>
+                            <strong>Start Date:</strong> {project.startDate}
+                        </p>
+                        <p>
+                            <strong>End Date:</strong> {project.endDate}
+                        </p>
+                    </div>
+                    <div className="w-full mt-6">
+                        {/* Markdown Rendering with enhanced plugins */}
+                        <ReactMarkdown
+                            className="prose prose-stone dark:prose-invert max-w-none"
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {project.description}
+                        </ReactMarkdown>
+                    </div>
+                </div>
                     <div className="flex mt-4 space-x-4">
                         {project.githubUrl && (
                             <a
                                 href={project.githubUrl}
                                 target="_blank"
-                                className="inline-flex items-center px-2 py-1 space-x-1 text-sm font-semibold text-white rounded-full bg-zinc-800 hover:bg-zinc-950 hover:text-white"
+                                className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white rounded-full bg-zinc-800 hover:bg-zinc-950 hover:text-white"
                             >
                                 <FaSquareGithub className="w-4 h-4" />{" "}
                                 <span>GitHub</span>
@@ -50,39 +87,13 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                             <a
                                 href={project.websiteUrl}
                                 target="_blank"
-                                className="inline-flex items-center px-2 py-1 space-x-1 text-sm font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600 hover:text-white"
+                                className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600 hover:text-white"
                             >
-                                <MdTransitEnterexit className="w-4 h-4" /> Visit
+                                <RiArrowRightUpLine className="w-4 h-4" /> Visit
                                 Project Website
                             </a>
                         )}
                     </div>
-                    {visibleTags.length > 0 && (
-                        <div className="flex flex-wrap mt-4 space-x-2">
-                            {visibleTags.map((tag, index) => (
-                                <span
-                                    key={index}
-                                    className={`flex items-center space-x-1 px-2 py-1 text-sm font-semibold text-white rounded-full ${tag.color}`}
-                                >
-                                    <tag.icon className="w-4 h-4" />{" "}
-                                    {/* Icon rendering */}
-                                    <span>{tag.name}</span>
-                                </span>
-                            ))}
-                        </div>
-                    )}
-                    <div className="flex items-center mt-4 space-x-4 text-sm text-stone-600">
-                        <p>
-                            <strong>Start Date:</strong> {project.startDate}
-                        </p>
-                        <p>
-                            <strong>End Date:</strong> {project.endDate}
-                        </p>
-                    </div>
-                    <div className="mt-6">
-                        <p className="text-lg">{project.description}</p>
-                    </div>
-                </div>
                 <hr className="my-6 border-stone-200 dark:border-stone-600" />
                 <div className="">
                     <h2 className="text-2xl font-bold">Related Projects</h2>

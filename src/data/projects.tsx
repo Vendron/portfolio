@@ -21,7 +21,7 @@ export type Project = {
 export const projects: Project[] = [
     {
         id: 1,
-        title: "Scikit-Longitudinal Package",
+        title: "Scikit-Longitudinal - Python Package",
         metric: "Longitudinal Data Analysis",
         imageUrl: "/images/Scikit-long-banner.png",
         altText: "NLP word cloud",
@@ -39,12 +39,11 @@ export const projects: Project[] = [
     },
     {
         id: 2,
-        title: "Helio Discord App",
-        metric: "500,000 users+",
+        title: "Helio - Discord Economy App",
+        metric: "1,000,000+ users in 2 years",
         imageUrl: "/images/helio_game.png",
         altText: "NLP word cloud",
-        description: "Helio is a game-focused Discord bot designed to integrate with popular game APIs and provide real-time multiplayer matchmaking. Built with TypeScript and leveraging Machine Learning for player ranking predictions.",
-        startDate: "2022-08-23",
+        description: "Helio is a game-focused Discord bot designed to integrate with popular game APIs, providing real-time multiplayer matchmaking and engaging player-driven markets. The game uses Machine Learning to optimise player engagement, creating a dynamic and interactive experience.\n## Key Features\n\n#### Player-Driven Markets\n- Machine learning models analyse player behavior to adjust in-game economies, item prices and drop-rates.\n#### Image Generation\n- New items, pets, cosmetics, and monsters are procedurally generated using AI-based image creation tools.\n#### Procedural Dungeon Generation\n- Infinite, re-playable dungeons are generated for players, ensuring a fresh experience each time.\n\n## My Role\nI created of the Helio bot, and later expanded the team to include additional developers, rebasing the entire project. My contributions included:\n\n- Designing the game and creating the in-game artwork.\n- Conducting A/B testing and playtests to analyze player interactions.\n- Implementing features based on the most used and enjoyed aspects of the game.\n- Organizing SCRUM meetings and writing hundreds of user stories to guide development.\n- Managing a global team of 11 developers.\n\nHelio is built with **TypeScript** and uses advanced technologies to deliver a unique gaming experience on Discord.",        startDate: "2022-08-23",
         endDate: "Present",
         githubUrl: "https://github.com/heliogame",
         websiteUrl: "https://helio.gg",
@@ -59,7 +58,7 @@ export const projects: Project[] = [
     {
         id: 3,
         title: "Biggest Mental Health Discord Community",
-        metric: "700,000 joins+",
+        metric: "700,000+ joins in 3 years",
         imageUrl: "/images/DABanner.png",
         altText: "NLP word cloud",
         description: "Managed the largest mental health support Discord server, providing users access to mental health resources and a safe community space. Included AI-powered sentiment analysis to detect distress signals in real-time.",
@@ -75,8 +74,8 @@ export const projects: Project[] = [
     },
     {
         id: 4,
-        title: "Dionysus Discord App",
-        metric: "100,000 users+",
+        title: "Dionysus - Discord Analytics App",
+        metric: "500,000+ users in 1 year",
         imageUrl: "/images/Dionysushead.png",
         altText: "Climate prediction model visualization",
         description: "A comprehensive Discord bot focused on moderation and community engagement, built using Node.js and Discord.js. The bot features custom AI-powered moderation tools and an easy-to-use interface for users.",
@@ -103,7 +102,7 @@ export const projects: Project[] = [
         githubUrl: "https://github.com/username/dionysus-bot",
         websiteUrl: "https://dionysus.gg",
         tags: [
-            {name: "Amazon", color: "bg-neural-500", icon: SiAmazon},
+            {name: "Amazon", color: "bg-neutral-950", icon: SiAmazon},
             {name: "E-Commerce", color: "bg-blue-500", icon: IoAnalytics},
         ],
         relatedProjects: [2, 3],
