@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
 import { IconType } from "react-icons";
 import { FaSquareGithub } from "react-icons/fa6";
@@ -9,6 +7,8 @@ import { RiArrowRightUpLine } from "react-icons/ri";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm"; // Support GitHub Markdown
 import rehypeRaw from "rehype-raw"; // Support raw HTML Markdown
+import Image from "next/image";
+import Link from "next/link";
 
 interface ProjectProps {
     project: Project;
@@ -19,10 +19,14 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
     project,
     relatedProjects,
 }) => {
+    if (!project) {
+        return <p>Project not found</p>;
+    }
+
     const visibleTags = project.tags;
 
     return (
-        <div className="bg-stone-100 dark:bg-stone-950">
+        <div className=" bg-stone-100 dark:bg-stone-950">
             <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {project.imageUrl && (
                     <Image
@@ -72,28 +76,28 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                         </ReactMarkdown>
                     </div>
                 </div>
-                    <div className="flex mt-4 space-x-4">
-                        {project.githubUrl && (
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white rounded-full bg-zinc-800 hover:bg-zinc-950 hover:text-white"
-                            >
-                                <FaSquareGithub className="w-4 h-4" />{" "}
-                                <span>GitHub</span>
-                            </a>
-                        )}
-                        {project.websiteUrl && (
-                            <a
-                                href={project.websiteUrl}
-                                target="_blank"
-                                className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600 hover:text-white"
-                            >
-                                <RiArrowRightUpLine className="w-4 h-4" /> Visit
-                                Project Website
-                            </a>
-                        )}
-                    </div>
+                <div className="flex mt-4 space-x-4">
+                    {project.githubUrl && (
+                        <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white rounded-full bg-zinc-800 hover:bg-zinc-950 hover:text-white"
+                        >
+                            <FaSquareGithub className="w-4 h-4" />{" "}
+                            <span>GitHub</span>
+                        </a>
+                    )}
+                    {project.websiteUrl && (
+                        <a
+                            href={project.websiteUrl}
+                            target="_blank"
+                            className="inline-flex items-center px-2 py-1 space-x-1 text-base font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600 hover:text-white"
+                        >
+                            <RiArrowRightUpLine className="w-4 h-4" /> Visit
+                            Project Website
+                        </a>
+                    )}
+                </div>
                 <hr className="my-6 border-stone-200 dark:border-stone-600" />
                 <div className="">
                     <h2 className="text-2xl font-bold">Related Projects</h2>
