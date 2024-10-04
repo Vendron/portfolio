@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "../data/projects";
+import { projects } from "../../data/projects";
 import { IconType } from "react-icons";
 
 interface Project {
