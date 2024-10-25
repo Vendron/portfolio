@@ -1,14 +1,11 @@
-import Script from "next/script";
-import { IconType } from "react-icons";
 import { FaSquareGithub } from "react-icons/fa6";
-import { MdTransitEnterexit } from "react-icons/md";
-import { Project } from "../../data/projects";
 import { RiArrowRightUpLine } from "react-icons/ri";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm"; // Support GitHub Markdown
 import rehypeRaw from "rehype-raw"; // Support raw HTML Markdown
 import Image from "next/image";
 import Link from "next/link";
+import { Project } from "@/common/projects/dto/project.dto";
 
 interface ProjectProps {
     project: Project;

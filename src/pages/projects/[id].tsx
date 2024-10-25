@@ -1,9 +1,10 @@
 import { useRouter, NextRouter } from "next/router";
-import { projects, Project } from "../../data/projects";
+import { projects } from "../../data/projects";
 import Navigation from "../../components/navigation";
 import Footer from "../../components/footer";
 import ProjectDetailContent from "./project_content";
 import { useEffect, useState } from "react";
+import { Project } from "@/common/projects/dto/project.dto";
 
 const ProjectDetail: React.FC = () => {
     const router: NextRouter = useRouter();
@@ -14,11 +15,15 @@ const ProjectDetail: React.FC = () => {
 
     useEffect(() => {
         if (id) {
-            const currentProject: Project | undefined = projects.find((p: Project) => p.id.toString() === id);
+            const currentProject: Project | undefined = projects.find(
+                (p: Project) => p.id.toString() === id
+            );
             setProject(currentProject || null);
 
             if (currentProject) {
-                const related: Project[] = projects.filter((p: Project) => currentProject.relatedProjects.includes(p.id));
+                const related: Project[] = projects.filter((p: Project) =>
+                    currentProject.relatedProjects.includes(p.id)
+                );
                 setRelatedProjects(related);
             }
         }
@@ -31,7 +36,10 @@ const ProjectDetail: React.FC = () => {
     return (
         <div>
             <Navigation />
-            <ProjectDetailContent project={project} relatedProjects={relatedProjects} />
+            <ProjectDetailContent
+                project={project}
+                relatedProjects={relatedProjects}
+            />
             <Footer />
         </div>
     );

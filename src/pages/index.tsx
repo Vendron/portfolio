@@ -1,9 +1,9 @@
-import ProjectsSection from "../components/projects";
-import Footer from "../components/footer";
+import ProjectsSection from "@/components/ProjectSection";
+import Footer from "@/components/footer";
 import About from "./about";
-import Navigation from "../components/navigation";
-import SkillsSection from "../components/skills";
-import Contact from "../components/contact";
+import Navigation from "@/components/navigation";
+import SkillsSection from "@/components/skills";
+import Contact from "@/components/contact";
 
 const Home: React.FC = () => (
     <div>
