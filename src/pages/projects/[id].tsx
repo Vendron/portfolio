@@ -1,7 +1,7 @@
 import { useRouter, NextRouter } from "next/router";
 import { projects, Project } from "../../data/projects";
-import Navigation from "../components/navigation";
-import Footer from "../components/footer";
+import Navigation from "../../components/navigation";
+import Footer from "../../components/footer";
 import ProjectDetailContent from "./project_content";
 import { useEffect, useState } from "react";
 

@@ -1,23 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "../../data/projects";
-import { IconType } from "react-icons";
-
-interface Project {
-    id: number;
-    title: string;
-    metric: string;
-    imageUrl: string;
-    altText: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-    githubUrl: string | null;
-    websiteUrl: string | null;
-    tags: Array<{ name: string; color: string; icon: IconType }>; // Use IconType for icons
-    relatedProjects: Array<number>;
-};
+import { projects } from "../data/projects";
+import { Project } from "@/common/projects/dto/project.dto";
 
 const ProjectTile: React.FC<{
     project: Project;
@@ -29,7 +14,9 @@ const ProjectTile: React.FC<{
         <Link href={isInteractable ? `/projects/${project.id}` : "#"} passHref>
             <div
                 className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-700 ${
-                    isInteractable ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer" : "opacity-60"
+                    isInteractable
+                        ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer"
+                        : "opacity-60"
                 }`}
                 style={!isInteractable ? { pointerEvents: "none" } : {}}
             >
@@ -48,7 +35,8 @@ const ProjectTile: React.FC<{
                                     key={index}
                                     className={`flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-white rounded-full ${tag.color}`}
                                 >
-                                    <tag.icon className="w-4 h-4" /> {/* Icon rendering */}
+                                    <tag.icon className="w-4 h-4" />{" "}
+                                    {/* Icon rendering */}
                                     <span>{tag.name}</span>
                                 </span>
                             ))}
@@ -56,10 +44,16 @@ const ProjectTile: React.FC<{
                     )}
                 </div>
                 <div className="p-4">
-                    <h3 className={`text-lg font-semibold ${isInteractable ? "text-stone-800 dark:text-white hover:text-opacity-75" : "text-stone-400 dark:text-stone-500"}`}>
+                    <h3
+                        className={`text-lg font-semibold ${isInteractable ? "text-stone-800 dark:text-white hover:text-opacity-75" : "text-stone-400 dark:text-stone-500"}`}
+                    >
                         {project.title}
                     </h3>
-                    <p className={`text-stone-600 dark:text-stone-300 ${!isInteractable ? "text-opacity-50" : ""}`}>{project.metric}</p>
+                    <p
+                        className={`text-stone-600 dark:text-stone-300 ${!isInteractable ? "text-opacity-50" : ""}`}
+                    >
+                        {project.metric}
+                    </p>
                 </div>
             </div>
         </Link>
