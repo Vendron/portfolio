@@ -4,6 +4,7 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { NavItem } from "@/common/navigation/dto/navigation.dto";
 import { MobileMenuProps } from "@/common/navigation/dto/mobilemenuprops.dto";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems: NavItem[] = [
     {
@@ -33,22 +34,32 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     toggleMenu,
     theme,
 }) => (
-    <div className="md:hidden">
-        <div
-            className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${theme === "light" ? "bg-white" : "bg-stone-800"}`}
-        >
-            {navItems.map((item) => (
-                <Link
+    <motion.div 
+        className="md:hidden"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.2 }}
+    >
+        <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${theme === "light" ? "bg-white" : "bg-stone-800"}`}>
+            {navItems.map((item, index) => (
+                <motion.div
                     key={item.name}
-                    href={item.href}
-                    className={`${theme === "light" ? "text-stone-600" : "text-stone-300"} block px-3 py-2 rounded-md text-base font-medium ${item.hoverEffect}`}
-                    onClick={toggleMenu} // Close menu on item click
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
                 >
-                    {item.name}
-                </Link>
+                    <Link
+                        href={item.href}
+                        className={`${theme === "light" ? "text-stone-600" : "text-stone-300"} block px-3 py-2 rounded-md text-base font-medium ${item.hoverEffect}`}
+                        onClick={toggleMenu}
+                    >
+                        {item.name}
+                    </Link>
+                </motion.div>
             ))}
         </div>
-    </div>
+    </motion.div>
 );
 
 const Navigation: React.FC = () => {
@@ -56,9 +67,8 @@ const Navigation: React.FC = () => {
     const { theme, toggleTheme } = useTheme();
     const [isSpinning, setIsSpinning] = useState(false);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-
-    const handleToggleTheme = () => {
+    const toggleMenu: () => void = () => setIsOpen(!isOpen);
+    const handleToggleTheme: () => void = () => {
         setIsSpinning(true);
         setTimeout(() => {
             toggleTheme();
@@ -73,25 +83,37 @@ const Navigation: React.FC = () => {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
-                        <Link href="/" className="flex-shrink-0">
-                            <span className="text-4xl font-bold text-amber-500">
-                                Vendron
-                            </span>
-                            <span className="text-4xl font-bold text-black dark:text-white">
-                                .
-                            </span>
-                        </Link>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Link href="/" className="flex-shrink-0">
+                                <span className="text-4xl font-bold text-amber-500">
+                                    Vendron
+                                </span>
+                                <span className="text-4xl font-bold text-black dark:text-white">
+                                    .
+                                </span>
+                            </Link>
+                        </motion.div>
                     </div>
                     <div className="items-center hidden space-x-4 md:flex">
                         <div className="flex items-baseline space-x-4">
-                            {navItems.map((item) => (
-                                <Link
+                            {navItems.map((item, index) => (
+                                <motion.div
                                     key={item.name}
-                                    href={item.href}
-                                    className={`${theme === "light" ? "text-stone-600" : "text-stone-300"} px-3 py-2 rounded-md text-sm font-medium ${item.hoverEffect}`}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ y: -2 }}
                                 >
-                                    {item.name}
-                                </Link>
+                                    <Link
+                                        href={item.href}
+                                        className={`${theme === "light" ? "text-stone-600" : "text-stone-300"} px-3 py-2 rounded-md text-sm font-medium ${item.hoverEffect}`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </motion.div>
                             ))}
                         </div>
                         <button
@@ -132,14 +154,15 @@ const Navigation: React.FC = () => {
                     </div>
                 </div>
             </div>
-            {/* Mobile menu, show/hide based on menu state */}
-            {isOpen && (
-                <MobileMenu
-                    navItems={navItems}
-                    toggleMenu={toggleMenu}
-                    theme={theme}
-                />
-            )}
+            <AnimatePresence>
+                {isOpen && (
+                    <MobileMenu
+                        navItems={navItems}
+                        toggleMenu={toggleMenu}
+                        theme={theme}
+                    />
+                )}
+            </AnimatePresence>
         </nav>
     );
 };
