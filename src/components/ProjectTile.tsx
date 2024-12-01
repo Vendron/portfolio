@@ -12,7 +12,7 @@ const ProjectTile: React.FC<{
     return (
         <Link href={isInteractable ? `/projects/${project.id}` : "#"} passHref>
             <div
-                className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-700 ${
+                className={`relative overflow-hidden transition transform bg-white rounded-lg shadow-md dark:bg-stone-900 ${
                     isInteractable
                         ? "hover:bg-opacity-75 hover:scale-105 cursor-pointer"
                         : "opacity-60"
@@ -32,7 +32,7 @@ const ProjectTile: React.FC<{
                             {visibleTags.map((tag, index) => (
                                 <span
                                     key={index}
-                                    className={`flex items-center space-x-1 px-2 py-1 text-xs font-semibold text-white rounded-full ${tag.color}`}
+                                    className={`flex items-center space-x-1 px-2 py-1 mt-1 text-xs font-semibold text-white rounded-full ${tag.color}`}
                                 >
                                     <tag.icon className="w-4 h-4" />{" "}
                                     {/* Icon rendering */}

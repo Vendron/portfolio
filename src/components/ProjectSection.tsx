@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { projects } from "@/data/projects";
 import ProjectTile from "./ProjectTile";
 import { Project } from "@/common/projects/dto/project.dto";
 
 const ProjectSection: React.FC = () => {
-    const [showAll, setShowAll]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
-    const visibleProjects: Project[] = showAll ? projects : projects.slice(0, 6);     // Show first 3 interactable + 3 non-interactable unless "showAll" is true
+    const [showAll, setShowAll] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    const handleResize = useCallback(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
+
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [handleResize]);
+
+    const visibleProjects: Project[] = showAll 
+        ? projects 
+        : isMobile
+            ? projects.slice(0, 4)
+            : projects.slice(0, 6);
 
     return (
         <section className="relative bg-stone-100 dark:bg-stone-950">
@@ -20,7 +36,7 @@ const ProjectSection: React.FC = () => {
                             <ProjectTile
                                 key={project.id}
                                 project={project}
-                                isInteractable={showAll || index < 3}
+                                isInteractable={showAll || index < (isMobile ? 3 : 3)}
                             />
                         ))}
                     </div>

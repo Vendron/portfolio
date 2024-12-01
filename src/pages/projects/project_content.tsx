@@ -41,11 +41,11 @@ const ProjectDetailContent: React.FC<ProjectProps> = ({
                 <div>
                     <h1 className="mt-6 text-4xl font-bold">{project.title}</h1>
                     {visibleTags.length > 0 && (
-                        <div className="flex flex-wrap mt-4 space-x-2">
+                        <div className="flex flex-wrap mt-2 space-x-2">
                             {visibleTags.map((tag, index) => (
                                 <span
                                     key={index}
-                                    className={`flex items-center space-x-1 px-2 py-1 text-base font-semibold text-white rounded-full ${tag.color}`}
+                                    className={`flex mt-2 items-center space-x-1 px-2 py-1 text-base font-semibold text-white rounded-full ${tag.color}`}
                                 >
                                     <tag.icon className="w-4 h-4" />{" "}
                                     {/* Icon rendering */}
