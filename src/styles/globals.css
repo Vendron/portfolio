@@ -3,22 +3,26 @@
 @tailwind utilities;
 
 .dark {
-    --tw-bg-opacity: 1;
-    /* for bg-stone-900 */
-    background-color: rgba(28, 25, 23, var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, var(--tw-text-opacity));
-    /* text-white */
+  --tw-bg-opacity: 1;
+  /* for bg-stone-900 */
+  background-color: rgba(28, 25, 23, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  /* text-white */
+}
+
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @keyframes pop-up {
-    0% {
-      transform: scale(0.95);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
   }
-  
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

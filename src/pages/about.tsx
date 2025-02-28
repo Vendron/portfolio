@@ -24,12 +24,12 @@ export default function About() {
                                 </h2>
                                 <p>
                                     I hold a Master&rsquo;s degree in Computer
-                                    Science, specializing in Machine Learning.
+                                    Science, specialising in Machine Learning.
                                     With extensive experience in both academic
                                     research and private sector projects, my
-                                    expertise lies in optimizing workflows and
+                                    expertise lies in optimising workflows and
                                     applying AI techniques to real-world
-                                    challenges. I have a passion for creating
+                                    challenges. I live creating
                                     scalable machine learning models that drive
                                     innovation.
                                 </p>
